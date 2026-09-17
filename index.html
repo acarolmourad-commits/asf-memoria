@@ -1,1 +1,47 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ASF Memória — Jogo da memória dos termos do surf | ASF</title><meta name="description" content="Jogo da memória com os termos do surf: aprenda vocabulário do line-up brincando. Satélite do app ASF."><link rel="canonical" href="https://acarolmourad-commits.github.io/asf-memoria/"><meta name="theme-color" content="#00A8CC"><style>:root{--p:#00A8CC;--d:#0E2439;--u:#9B59B6;--bg:#F7FBFC;--g:#5A6B7A}*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--d)}nav{position:sticky;top:0;background:#fff;border-bottom:1px solid #E5EEF2;padding:10px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}nav a{color:var(--p);text-decoration:none;font-weight:700;font-size:13px}nav a.on{color:var(--u)}header{background:linear-gradient(135deg,var(--p),var(--u));color:#fff;padding:36px 20px 26px;text-align:center}.wrap{max-width:560px;margin:0 auto;padding:20px 16px 60px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.c{aspect-ratio:1;background:linear-gradient(135deg,var(--p),var(--u));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;color:transparent;user-select:none;transition:transform .2s}.c.open,.c.done{background:#fff;color:inherit;box-shadow:0 2px 8px rgba(14,36,57,.1);cursor:default}.c.done{opacity:.5}.muted{color:var(--g);font-size:12.5px;text-align:center;margin-top:14px}footer{text-align:center;font-size:12.5px;color:var(--g);padding:24px;border-top:1px solid #E5EEF2}</style></head><body><nav><a href="https://acarolmourad-commits.github.io/asf-app/">🏄 App</a><a class="on" href="https://acarolmourad-commits.github.io/asf-memoria/">🧠 Memória</a><a href="https://acarolmourad-commits.github.io/asf-glossario/">📖 Glossário</a><a href="https://acarolmourad-commits.github.io/asf-quiz/">❓ Quiz</a><a href="https://acarolmourad-commits.github.io/asf-kids/">🧒 Kids</a></nav><header><h1>🧠 Memória do surf</h1><p>Ache os pares e aprenda os termos do line-up.</p></header><main class="wrap"><div class="grid" id="grid"></div><p class="muted" id="st">Jogadas: 0</p></main><footer>🌊 ASF · <a href="https://acarolmourad-commits.github.io/" style="color:var(--p)">Hub de apps</a> · Termos no <a href="https://acarolmourad-commits.github.io/asf-glossario/" style="color:var(--p)">Glossário</a></footer><script>const icos=['🌊','🏄‍♀️','🛟','🐬','☀️','🏖️','🧭','⚡'];let cartas=icos.concat(icos).sort(()=>Math.random()-.5),abertas=[],jog=0,feitos=0;const grid=document.getElementById('grid');cartas.forEach((c,i)=>{const d=document.createElement('div');d.className='c';d.dataset.i=i;d.onclick=()=>vira(d,c);grid.appendChild(d);});function vira(d,c){if(d.className!=='c'||abertas.length===2)return;d.textContent=c;d.className='c open';abertas.push([d,c]);if(abertas.length===2){jog++;document.getElementById('st').textContent='Jogadas: '+jog;setTimeout(()=>{if(abertas[0][1]===abertas[1][1]){abertas.forEach(x=>x[0].className='c done');feitos++;if(feitos===8)document.getElementById('st').textContent='🏆 Completo em '+jog+' jogadas!';}else{abertas.forEach(x=>{x[0].className='c';x[0].textContent='';});}abertas=[];},700);}}</script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASF Memória — ASF</title>
+<meta name="description" content="Jogo da memória com os termos do surf para aprender brincando">
+<style>
+:root{--rosa:#ff4d8d;--roxo:#7b2ff7;--areia:#fff5ec;--mar:#00c2cb}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+body{background:linear-gradient(160deg,#fff5ec,#ffe3f1 60%,#e0f7fa);min-height:100vh;color:#333}
+header{background:linear-gradient(90deg,var(--rosa),var(--roxo));color:#fff;padding:2rem 1rem;text-align:center}
+header h1{font-size:2rem} header p{opacity:.9;margin-top:.4rem}
+nav{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;padding:.8rem;background:#fff;box-shadow:0 2px 8px #0001;position:sticky;top:0;z-index:10}
+nav a{background:var(--areia);border:1px solid #ffd3e6;color:#c2185b;padding:.3rem .7rem;border-radius:20px;font-size:.78rem;text-decoration:none}
+main{max-width:760px;margin:1.5rem auto;padding:0 1rem}
+.card{background:#fff;border-radius:16px;padding:1.4rem;box-shadow:0 4px 16px #7b2ff720;margin-bottom:1.2rem}
+.card h2{color:var(--roxo);margin-bottom:.6rem;font-size:1.2rem}
+button{background:linear-gradient(90deg,var(--rosa),var(--roxo));color:#fff;border:none;padding:.6rem 1.2rem;border-radius:24px;font-size:1rem;cursor:pointer;margin:.2rem 0}
+.xp{position:fixed;bottom:1rem;right:1rem;background:#fff;border:2px solid var(--rosa);border-radius:24px;padding:.4rem 1rem;font-weight:bold;color:var(--roxo);box-shadow:0 4px 12px #0002}
+footer{text-align:center;padding:2rem;font-size:.8rem;color:#888}
+#grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin:.8rem 0}
+</style>
+</head>
+<body>
+<header><h1>🃏 ASF Memória</h1><p>Jogo da memória com os termos do surf para aprender brincando</p></header>
+<nav><a href="https://acarolmourad-commits.github.io/">🌐 Hub ASF</a>
+<a href="https://acarolmourad-commits.github.io/asf-app/">🏄‍♀️ ASF App</a>
+<a href="https://acarolmourad-commits.github.io/asf-ranking/">🏆 Ranking</a>
+<a href="https://acarolmourad-commits.github.io/asf-glossario/">Glossário</a>
+<a href="https://acarolmourad-commits.github.io/asf-quiz/">Quiz</a>
+<a href="https://acarolmourad-commits.github.io/asf-kids/">Kids</a></nav>
+<main>
+<div class="card"><h2>🃏 Memória do Surf</h2><p>Encontre os pares de termos + emojis!</p><div id="grid"></div><p>Pares: <b id="p">0</b>/8 · Tentativas: <b id="t">0</b></p><button onclick="init()">Embaralhar 🔀</button></div>
+<div class="card"><p>Aprenda os termos no <a href='https://acarolmourad-commits.github.io/asf-glossario/'>ASF Glossário</a> e teste-se no <a href='https://acarolmourad-commits.github.io/asf-quiz/'>ASF Quiz</a>.</p></div>
+<div class="card"><h2>🌐 Ecossistema ASF</h2><p>Ganhe XP aqui e veja seu progresso no <a href="https://acarolmourad-commits.github.io/asf-ranking/">ASF Ranking</a>. Explore tudo no <a href="https://acarolmourad-commits.github.io/">Hub ASF</a>.</p></div>
+</main>
+<div class="xp">⭐ XP: <span id="xp">0</span></div>
+<footer>ASF — Associação de Surf Feminino · <a href="https://acarolmourad-commits.github.io/asf-app/">asf-app</a></footer>
+<script>
+const XP=()=>parseInt(localStorage.getItem('asf_xp')||'0');
+function addXP(n){localStorage.setItem('asf_xp',XP()+n);document.getElementById('xp').textContent=XP();}
+document.getElementById('xp').textContent=XP();
+const PARES=[['SWELL','🌊'],['PRANCHA','🏄‍♀️'],['LEASH','🔗'],['QUILHA','🔻'],['MARÉ','🌙'],['LINEUP','👥'],['WIPEOUT','💥'],['TUBO','🌀']];let cartas=[],abertas=[],feitos=0,tent=0;function init(){cartas=[...PARES.flatMap(p=>[p[0],p[1]])].sort(()=>Math.random()-.5).map((v,i)=>({v,i,ab:false,ok:false}));abertas=[];feitos=0;tent=0;document.getElementById('p').textContent=0;document.getElementById('t').textContent=0;render();}function render(){document.getElementById('grid').innerHTML=cartas.map(c=>`<button style="aspect-ratio:1;font-size:${c.ab||c.ok?'1.1rem':'1.4rem'};background:${c.ok?'#c8f7c5':c.ab?'#fff':'linear-gradient(120deg,var(--rosa),var(--roxo))'};color:${c.ok||c.ab?'#333':'transparent'};border-radius:10px;padding:0" onclick="flip(${c.i})">${c.ab||c.ok?c.v:'🌊'}</button>`).join('');}window.flip=i=>{const c=cartas[i];if(c.ab||c.ok||abertas.length===2)return;c.ab=true;abertas.push(c);render();if(abertas.length===2){tent++;document.getElementById('t').textContent=tent;const[a,b]=abertas;const par=PARES.find(p=>p.includes(a.v)&&p.includes(b.v));setTimeout(()=>{if(par){a.ok=b.ok=true;feitos++;document.getElementById('p').textContent=feitos;addXP(5);if(feitos===8)addXP(30);}else{a.ab=b.ab=false;}abertas=[];render();},800);}};init();
+</script>
+</body>
+</html>
